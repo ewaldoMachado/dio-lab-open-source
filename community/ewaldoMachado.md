@@ -10,7 +10,7 @@ No seu repositório, vá até a pasta .github/, crie uma pasta workflows e nela 
 
 # 2 - Definir o gatilho do workflow.
 
-O agente pode ser acionado quando uma *issue* ou *pull requst* for aberta. No arquivo YAML, adicione:
+O agente pode ser acionado quando uma *issue* for aberta. No arquivo YAML, adicione:
 
 name: Responder Issues
 on:
@@ -26,7 +26,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            github.issues.createComment({
+            github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -44,3 +44,5 @@ O **GitHub Token** já está disponível por padrão para interações básicas.
 Faça o ***Commit*** e o ***push*** do arquivo YAML para o repositório.
 
 Abra uma issue e veja o agente responder automaticamente!
+
+Não esqueça de fechar a **issue**. 
